@@ -22,7 +22,7 @@ class Note(BaseModel):
 
     title = models.CharField(verbose_name="Title", max_length=100)
     description = models.CharField(verbose_name="Description", max_length=500)
-    html_txt = models.CharField(verbose_name="Raw HTML", max_length=500,null=True)
+    html_text = models.CharField(verbose_name="Raw HTML", max_length=500,null=True)
     user =  models.IntegerField(null=False,blank=False,db_index=True)
 
     class Meta:

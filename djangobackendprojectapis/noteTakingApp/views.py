@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from noteTakingApp.gram_check import check_grammer
 from utils.Apiresponse import Api_Response
 from django.http.response import HttpResponse
-
+from noteTakingApp.serializers import NoteSerializer
 
 def __get_var(data,*args):
     out = []
@@ -52,5 +52,27 @@ def renderMDtoHTML(request):
 def createNote(request):
     if request.method == 'POST':
 
+        # TODO : change to get user_id from request ? cookie or header or param
+
         data = request.data 
-        []
+        [title,description,user,markdown_txt] = __get_var(data,"title","desc","user","markdown_text")
+        raw_html = None
+        if markdown_txt:
+            raw_html = markdown.markdown(markdown_txt)
+
+        notsrlobj = NoteSerializer(data={
+            "title":title,
+            "description" : description,
+            "user":user,
+            "html_text" : raw_html 
+        })
+
+        if notsrlobj.is_valid():
+            # print("no error in serializer")
+            notsrlobj.save()
+            return Api_Response(202,notsrlobj.data,"note added sucessfully","").response()
+        else:
+            print("error in serializer",notsrlobj.errors)
+            return Api_Response(402,"","Error while adding note",notsrlobj.errors).error_response()
+
+        print('everytinh okkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
