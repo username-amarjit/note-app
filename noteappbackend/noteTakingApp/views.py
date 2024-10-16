@@ -1,8 +1,9 @@
+from django.views.decorators.csrf import csrf_exempt
 import json
 import markdown
 from rest_framework import status
 from rest_framework.decorators import api_view
-from noteTakingApp.gram_check import check_grammer
+# from noteTakingApp.gram_check import check_grammer
 from django.contrib.auth.models import User
 from utils.Apiresponse import Api_Response
 from django.http.response import HttpResponse
@@ -26,14 +27,14 @@ def checkNoteGrammer(request):
     #     return Response({"pass":"pass"})
 
     if request.method == 'POST':
-        body = request.data
-        # print(body)
-        note = body.get('note')
-        if check_grammer(note):
-            return Api_Response(status=200,data="note is grammetically correct",message="Success",dtl="").response()
-        else:
-            return Api_Response(status=400,data="note is not grammetically correct",message="Success",dtl="").response()
-        # return Response({"fail":"pass"})
+        # body = request.data
+        # # print(body)
+        # note = body.get('note')
+        # if check_grammer(note):
+        #     return Api_Response(status=200,data="note is grammetically correct",message="Success",dtl="").response()
+        # else:
+            # return Api_Response(status=400,data="note is not grammetically correct",message="Success",dtl="").response()
+        return Response(status=400,data="note is not checked",message="Success",dtl="").response()
     else:
         return Api_Response(status=450,data="",message="Wrong Request Type",dtl="").error_response()
     
@@ -142,7 +143,7 @@ def getAllNotes(request):
             return Api_Response(402,"","Error while fetching notes note",notsrlobj.errors).error_response()
 
 
-
+@csrf_exempt
 @api_view(['POST'])
 def registerUser(request):
     if request.method == 'POST':
