@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="common.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Home - Note App</title>
+</head>
+<body class="font-sans text-text bg-background">
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-gray-900">My Notes</h1>
+            <div>
+                <button id="create-button" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 mr-4">+ Create</button>
+                <button id="logout-button" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300">Logout</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <div class="px-4 py-6 sm:px-0">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="notes-container">
+                    <!-- Sample notes for reference -->
+                    <div class="bg-white overflow-hidden shadow rounded-lg">
+                        <div class="px-4 py-5 sm:p-6">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Meeting Notes</h3>
+                            <p class="mt-1 text-sm text-gray-500">Project kickoff meeting with the team...</p>
+                        </div>
+                    </div>
+                    <div class="bg-white overflow-hidden shadow rounded-lg">
+                        <div class="px-4 py-5 sm:p-6">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Shopping List</h3>
+                            <p class="mt-1 text-sm text-gray-500">Milk, eggs, bread, fruits...</p>
+                        </div>
+                    </div>
+                    <div class="bg-white overflow-hidden shadow rounded-lg">
+                        <div class="px-4 py-5 sm:p-6">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Book Summary</h3>
+                            <p class="mt-1 text-sm text-gray-500">Key points from "The Alchemist" by Paulo Coelho...</p>
+                        </div>
+                    </div>
+                    <!-- Notes will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
