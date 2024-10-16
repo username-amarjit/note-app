@@ -24,8 +24,8 @@ urlpatterns = [
     path("checkgrammer/", views.checkNoteGrammer),
     path("rendermdtohtml/", views.renderMDtoHTML),
     path("createnote/", views.createNote),
-    # path("deletenote/", views.deleteNote),
+    path("deletenote/<int:id>", views.deleteNote),
     # path("updatenote/", views.updateNote),
-    # path("getallnotes/", views.getAllNotes),
+    path("getallnotes/<int:user_id>", views.getAllNotes),
 
 ]

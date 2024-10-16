@@ -6,6 +6,8 @@ from noteTakingApp.gram_check import check_grammer
 from utils.Apiresponse import Api_Response
 from django.http.response import HttpResponse
 from noteTakingApp.serializers import NoteSerializer
+from noteTakingApp.models import Note
+
 
 def __get_var(data,*args):
     out = []
@@ -75,4 +77,36 @@ def createNote(request):
             print("error in serializer",notsrlobj.errors)
             return Api_Response(402,"","Error while adding note",notsrlobj.errors).error_response()
 
-        print('everytinh okkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
+@api_view(['DELETE'])
+def deleteNote(request,id):
+    if request.method == 'DELETE':
+
+        # TODO : change to get user_id from request ? cookie or header or param and validate request
+
+        noteobj = Note.objects.filter(id=id).first()
+
+        if noteobj:
+            # print("no error in serializer")
+            noteobj.delete()
+            return Api_Response(202,noteobj.data,"note added sucessfully","").response()
+        else:
+            return Api_Response(402,"","Error while delete note",f"No Note found for id : {id}").error_response()
+
+
+@api_view(['GET'])
+def deleteNote(request,user_id):
+    if request.method == 'GET':
+
+        # TODO : change to get user_id from request ? cookie or header or param and validate request
+
+        noteobj = Note.objects.filter(user=user_id).all()
+
+        if noteobj:
+
+            notesrlobj = NoteSerializer(noteobj,many=True)
+            # print("no error in serializer")
+            noteobj.delete()
+            return Api_Response(202,notesrlobj.data,"note added sucessfully","").response()
+        else:
+            return Api_Response(402,"","Error while adding note",f"No Note found for user : {user_id}").error_response()
+
