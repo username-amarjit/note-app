@@ -3,6 +3,7 @@ import markdown
 from rest_framework import status
 from rest_framework.decorators import api_view
 from noteTakingApp.gram_check import check_grammer
+from django.contrib.auth.models import User
 from utils.Apiresponse import Api_Response
 from django.http.response import HttpResponse
 from noteTakingApp.serializers import NoteSerializer
@@ -109,4 +110,20 @@ def deleteNote(request,id):
 #             return Api_Response(202,notesrlobj.data,"note added sucessfully","").response()
 #         else:
 #             return Api_Response(402,"","Error while adding note",f"No Note found for user : {user_id}").error_response()
+
+
+@api_view(['POST'])
+def registerUser(request):
+    if request.method == 'POST':
+        data = request.data
+        [username,email,password] = __get_var(data,"username","email","password")
+        if username and password:
+            try :
+                usrobj = User.objects.create_user(username=username,email=email,password=password)
+
+                if usrobj:
+                    return Api_Response(200,usrobj,'user created successfully','').response()
+            except Exception as ex:
+                return Api_Response(402,"","Error while registering user",str(ex)).error_response()
+
 
