@@ -21,5 +21,6 @@ from . import views
 urlpatterns = [
     # path("/createblog", views.createBlog, name="Create Blog"),
     path("checkgrammer/", views.checkNoteGrammer),
+    path("rendermdtohtml/", views.renderMDtoHTML),
 
 ]
