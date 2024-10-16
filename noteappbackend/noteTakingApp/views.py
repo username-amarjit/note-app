@@ -94,22 +94,53 @@ def deleteNote(request,id):
             return Api_Response(402,"","Error while delete note",f"No Note found for id : {id}").error_response()
 
 
-# @api_view(['GET'])
-# def deleteNote(request,user_id):
-#     if request.method == 'GET':
+@api_view(['POST'])
+def updateNote(request,note_id):
+    if request.method == 'POST':
 
-#         # TODO : change to get user_id from request ? cookie or header or param and validate request
+        # TODO : change to get user_id from request ? cookie or header or param and validate request
 
-#         noteobj = Note.objects.filter(user=user_id).all()
+        title,description,mdtext = __get_var(request.data,'title','description','markdown_text')
+        
+        noteobj = Note.objects.filter(id=note_id).first()
+        if noteobj:
 
-#         if noteobj:
+            if title:
+                noteobj.update(title=title)    
+            if description:
+                noteobj.update(description=description)
+            if mdtext:
+                rawhtml = markdown.markdown(mdtext)
+                noteobj.update(html_text=rawhtml)
 
-#             notesrlobj = NoteSerializer(noteobj,many=True)
-#             # print("no error in serializer")
-#             noteobj.delete()
-#             return Api_Response(202,notesrlobj.data,"note added sucessfully","").response()
-#         else:
-#             return Api_Response(402,"","Error while adding note",f"No Note found for user : {user_id}").error_response()
+
+                notesrlobj = NoteSerializer(noteobj)
+                # print("no error in serializer")
+                return Api_Response(202,notesrlobj.data,"note updated sucessfully","").response()
+        else:
+            return Api_Response(402,"","Error while adding note",f"No Note found for user.").error_response()
+
+
+@api_view(['POST'])
+def getAllNotes(request):
+    if request.method == 'POST':
+
+        # TODO : change to get user_id from request ? cookie or header or param
+        try:
+            data = request.data 
+            user = __get_var(data,"user")
+
+            notes_obj = Note.objects.filter(user=id).all()
+
+            notsrlobj = NoteSerializer(notes_obj,many=True)
+
+            if notsrlobj:
+            
+                return Api_Response(202,notsrlobj.data,"all user notes fetched sucessfully","").response()
+        except Exception as ex:
+            print("error in serializer",notsrlobj.errors)
+            return Api_Response(402,"","Error while fetching notes note",notsrlobj.errors).error_response()
+
 
 
 @api_view(['POST'])

@@ -20,12 +20,22 @@ from . import views
 
 urlpatterns = [
 
-    # path("/createblog", views.createBlog, name="Create Blog"),
+    # checkgrammer of note written
     path("checkgrammer/", views.checkNoteGrammer),
+    
+    # render that note to HTML
     path("rendermdtohtml/", views.renderMDtoHTML),
+
+    # create new Note
     path("createnote/", views.createNote),
+
+    # delete current note
     path("deletenote/<int:id>", views.deleteNote),
-    # path("updatenote/", views.updateNote),
-    # path("getallnotes/<int:user_id>", views.getAllNotes),
+
+    # update current note
+    path("updatenote/<int:note_id>", views.updateNote),
+
+    # get all user notes
+    path("getallnotes/<int:user_id>", views.getAllNotes),
 
 ]
