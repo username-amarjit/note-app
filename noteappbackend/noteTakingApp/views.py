@@ -122,7 +122,7 @@ def registerUser(request):
                 usrobj = User.objects.create_user(username=username,email=email,password=password)
 
                 if usrobj:
-                    return Api_Response(200,usrobj,'user created successfully','').response()
+                    return Api_Response(200,"",'user created successfully','').response()
             except Exception as ex:
                 return Api_Response(402,"","Error while registering user",str(ex)).error_response()
 
