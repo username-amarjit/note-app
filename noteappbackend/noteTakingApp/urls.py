@@ -26,6 +26,6 @@ urlpatterns = [
     path("createnote/", views.createNote),
     path("deletenote/<int:id>", views.deleteNote),
     # path("updatenote/", views.updateNote),
-    path("getallnotes/<int:user_id>", views.getAllNotes),
+    # path("getallnotes/<int:user_id>", views.getAllNotes),
 
 ]

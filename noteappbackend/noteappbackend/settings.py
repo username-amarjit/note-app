@@ -37,11 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-# customer apps
-    "blogapi",
-    "noteTakingApp",
 
-# libraries
+    "noteTakingApp",
     "rest_framework",
 ]
 

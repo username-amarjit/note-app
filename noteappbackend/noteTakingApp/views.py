@@ -93,20 +93,20 @@ def deleteNote(request,id):
             return Api_Response(402,"","Error while delete note",f"No Note found for id : {id}").error_response()
 
 
-@api_view(['GET'])
-def deleteNote(request,user_id):
-    if request.method == 'GET':
+# @api_view(['GET'])
+# def deleteNote(request,user_id):
+#     if request.method == 'GET':
 
-        # TODO : change to get user_id from request ? cookie or header or param and validate request
+#         # TODO : change to get user_id from request ? cookie or header or param and validate request
 
-        noteobj = Note.objects.filter(user=user_id).all()
+#         noteobj = Note.objects.filter(user=user_id).all()
 
-        if noteobj:
+#         if noteobj:
 
-            notesrlobj = NoteSerializer(noteobj,many=True)
-            # print("no error in serializer")
-            noteobj.delete()
-            return Api_Response(202,notesrlobj.data,"note added sucessfully","").response()
-        else:
-            return Api_Response(402,"","Error while adding note",f"No Note found for user : {user_id}").error_response()
+#             notesrlobj = NoteSerializer(noteobj,many=True)
+#             # print("no error in serializer")
+#             noteobj.delete()
+#             return Api_Response(202,notesrlobj.data,"note added sucessfully","").response()
+#         else:
+#             return Api_Response(402,"","Error while adding note",f"No Note found for user : {user_id}").error_response()
 
