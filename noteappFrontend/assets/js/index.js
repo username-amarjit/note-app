@@ -8,7 +8,7 @@ document.querySelector("#username").addEventListener("selectionchange",(e) => {
 })
 
 
-document.querySelector("#singin-form").addEventListener("submit",(e) => {
+document.querySelector("#login-form").addEventListener("submit",(e) => {
     e.preventDefault()
     const username = document.querySelector("#username").value
     const password = document.querySelector("#password").value
@@ -18,10 +18,12 @@ document.querySelector("#singin-form").addEventListener("submit",(e) => {
     
     axios.post(`http://localhost:8000/api/token/`,{username:username,password:password})
     .then(function (response) {
-        localStorage.setItem("apiResponse",JSON.stringify(response.data));
-        if(JSON.parse(localStorage.getItem('apiResponse'))?.access){
-          localStorage.setItem("access",JSON.parse(localStorage.getItem('apiResponse'))?.access);
+        localStorage.setItem("loginApiResponse",JSON.stringify(response.data));
+        if(JSON.parse(localStorage.getItem('loginApiResponse'))?.access){
+          localStorage.setItem("access",JSON.parse(localStorage.getItem('loginApiResponse')).access);
+          console.log('Attempting to redirect...');
           window.location.href = '/noteappFrontend/home.html';
+          console.log('Redirect should have occurred. Current location:', window.location.href);
         }
       })
       .catch(function (error) {
