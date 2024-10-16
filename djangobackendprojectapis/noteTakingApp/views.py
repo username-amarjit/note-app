@@ -6,6 +6,16 @@ from noteTakingApp.gram_check import check_grammer
 from utils.Apiresponse import Api_Response
 from django.http.response import HttpResponse
 
+
+def __get_var(data,*args):
+    out = []
+    for x in args:
+        out.append(data.get(x))
+    return out
+
+
+
+
 @api_view(['GET', 'POST'])
 def checkNoteGrammer(request):
 
@@ -37,3 +47,10 @@ def renderMDtoHTML(request):
     else:
         return Api_Response(status=450,data="",message="Wrong Request Type",dtl="").error_response()
     
+
+@api_view(['POST'])
+def createNote(request):
+    if request.method == 'POST':
+
+        data = request.data 
+        []

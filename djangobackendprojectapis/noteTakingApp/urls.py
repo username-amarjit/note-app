@@ -19,8 +19,13 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+
     # path("/createblog", views.createBlog, name="Create Blog"),
     path("checkgrammer/", views.checkNoteGrammer),
     path("rendermdtohtml/", views.renderMDtoHTML),
+    # path("createnote/", views.createNote),
+    # path("deletenote/", views.deleteNote),
+    # path("updatenote/", views.updateNote),
+    # path("getallnotes/", views.getAllNotes),
 
 ]

@@ -4,7 +4,7 @@ from django.http.response import JsonResponse
 class Api_Response:
 
     def __init__(self,status,data,message,dtl) -> None:
-        print('in api resposne')
+        print('in api response')
         self.status = status
         self.data = data
         self.message = message
