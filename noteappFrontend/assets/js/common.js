@@ -13,3 +13,10 @@ tailwind.config = {
         }
     }
 }
+
+
+const getCurrentHost = () =>{
+    return `${'http://localhost:8000/'}`
+};
+
+// export default getCurrentHost;
