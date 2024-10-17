@@ -17,10 +17,13 @@ function showErrorMessage(errorMsg) {
 function registerUser(username,email,password){
     axios.post(`http://localhost:8000/register/`,{username:username,password:password,email:email})
     .then(function (response) {
-        // localStorage.setItem("signupApiResponse",JSON.stringify(response.data));
-        if(response.status_code == 200){          
-            console.log('logged in sucessfully');
+        localStorage.setItem("signupApiResponse",JSON.stringify(response.data));
+        if(response.data.status_code == 200){          
+            console.log('user created in sucessfully');
             window.location.href = '/noteappFrontend/index.html';
+        }
+        else{
+            showErrorMessage(response.data.error_message)
         }
       })
       .catch(function (error) {
