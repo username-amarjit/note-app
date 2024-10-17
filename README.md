@@ -99,4 +99,5 @@ To get started with NoteAppBackend, follow these steps:
 
 <!-- finished Version 1 , date - 3 july 2024  -->
 
-##### version 1(end date) - 16 oct 2024
+##### version 1(backend end date) - 16 oct 2024
+##### version 1(end date) - 17 oct 2024
