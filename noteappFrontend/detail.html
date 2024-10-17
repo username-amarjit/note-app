@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/noteappFrontend/assets/js/common.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -30,7 +31,7 @@
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <h1 class="text-3xl font-bold text-gray-900" id="note-title">NoteAppBackend</h1>
             <div class="flex space-x-4">
-                <!-- <button id="save-button" class="bg-secondary text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300">save</button> -->
+                <button id="save-button" class="bg-secondary text-white px-4 py-2 rounded-md hover:bg-green-600 transition duration-300">save</button>
                 <button id="edit-button" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Edit</button>
                 <button id="logout-button" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300">Logout</button>
             </div>
@@ -57,42 +58,13 @@
     </main>
 
     <script>
-        // Sample markdown content
-        const markdownContent = `# NoteAppBackend
-
-NoteAppBackend is a backend project for a note-taking application built with Django. This project provides a set of APIs for user authentication, note management, and other functionalities related to note-taking.
-
-## Table of Contents
-
-- [Installation](#installation)
-- [API Endpoints](#api-endpoints)
-  - [Authentication](#authentication)
-  - [User Registration](#user-registration)
-  - [Note Management](#note-management)
-
-## Installation
-
-To get started with NoteAppBackend, follow these steps:
-
-1. Clone the repository:
-
-    \`\`\`bash
-    git clone https://github.com/drowsyzen/markdown-Note-taking-App.git
-    \`\`\`
-
-2. Navigate to the project directory:
-
-    \`\`\`bash
-    cd noteappbackend
-    \`\`\``;
 
         // Render the markdown content
         document.addEventListener('DOMContentLoaded', function() {
             const rawMarkdown = document.getElementById('markdown-input');
             const content = document.getElementById('note-content');
             
-            rawMarkdown.value = markdownContent;
-            content.innerHTML = marked.parse(markdownContent);
+            content.innerHTML = marked.parse(rawMarkdown.value);
 
             // Update preview on input
             rawMarkdown.addEventListener('input', function() {
