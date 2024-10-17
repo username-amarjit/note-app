@@ -21,10 +21,9 @@ document.querySelector("#login-form").addEventListener("submit",(e) => {
         localStorage.setItem("loginApiResponse",JSON.stringify(response.data));
         if(JSON.parse(localStorage.getItem('loginApiResponse'))?.access){
           localStorage.setItem("access",JSON.parse(localStorage.getItem('loginApiResponse')).access);
-          console.log('Attempting to redirect...');
           window.location.href = '/noteappFrontend/home.html';
-          console.log('Redirect should have occurred. Current location:', window.location.href);
         }
+        console.log(localStorage.getItem('loginApiResponse'))
       })
       .catch(function (error) {
         localStorage.setItem("apiError",error);
