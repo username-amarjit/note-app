@@ -9,6 +9,7 @@ from utils.Apiresponse import Api_Response
 from django.http.response import HttpResponse
 from noteTakingApp.serializers import NoteSerializer
 from noteTakingApp.models import Note
+import traceback
 
 
 def __get_var(data,*args):
@@ -59,7 +60,8 @@ def createNote(request):
         # TODO : change to get user_id from request ? cookie or header or param
 
         data = request.data 
-        [title,description,user,markdown_txt] = __get_var(data,"title","desc","user","markdown_text")
+        user = request.user.id
+        [title,description,markdown_txt] = __get_var(data,"title","desc","markdown_text")
         raw_html = None
         if markdown_txt:
             raw_html = markdown.markdown(markdown_txt)
@@ -107,40 +109,40 @@ def updateNote(request,note_id):
         if noteobj:
 
             if title:
-                noteobj.update(title=title)    
+                noteobj.title=title
             if description:
-                noteobj.update(description=description)
+                noteobj.description=description
             if mdtext:
                 rawhtml = markdown.markdown(mdtext)
-                noteobj.update(html_text=rawhtml)
+                noteobj.html_text=rawhtml
 
-
-                notesrlobj = NoteSerializer(noteobj)
-                # print("no error in serializer")
-                return Api_Response(202,notesrlobj.data,"note updated sucessfully","").response()
+            noteobj.save()
+            notesrlobj = NoteSerializer(noteobj)
+            # print("no error in serializer")
+            return Api_Response(202,notesrlobj.data,"note updated sucessfully","").response()
         else:
             return Api_Response(402,"","Error while adding note",f"No Note found for user.").error_response()
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 def getAllNotes(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
 
         # TODO : change to get user_id from request ? cookie or header or param
         try:
             data = request.data 
             user = __get_var(data,"user")
 
-            notes_obj = Note.objects.filter(user=id).all()
-
+            notes_obj = Note.objects.all()   # need to add filter here 
             notsrlobj = NoteSerializer(notes_obj,many=True)
 
             if notsrlobj:
             
-                return Api_Response(202,notsrlobj.data,"all user notes fetched sucessfully","").response()
+                return Api_Response(202,notsrlobj.data,"All user notes fetched sucessfully.","").response()
+            return Api_Response(202,[],"No notes found.","").response()
         except Exception as ex:
-            print("error in serializer",notsrlobj.errors)
-            return Api_Response(402,"","Error while fetching notes note",notsrlobj.errors).error_response()
+            print("error in serializer",traceback.format_exc())
+            return Api_Response(402,"","Error while fetching notes note",str(ex)).error_response()
 
 
 @csrf_exempt

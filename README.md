@@ -82,12 +82,16 @@ The application should now be running. The backend will be available at `http://
 
 4. Once logged in, you'll be taken to your dashboard where you can view your existing notes or create new ones.
 
-5. To create a new note, click on the "New Note" button and start writing. You can use Markdown syntax for formatting.
+5. To create a new note, click on the "+ create" button and start writing. You can use Markdown syntax for formatting.
 
-6. To edit an existing note, click on the note title in your dashboard.
+6. To edit an existing note, click on "edit" button in the navigation bar.
 
-7. Your notes are automatically saved as you type.
+7. After editing the note, click "save" button to save the edited note.
 
 8. To log out, click on the "Logout" button in the navigation bar.
 
-Enjoy using NoteApp for all your note-taking needs!
+
+<!-- finished Version 1 , date - 3 july 2024  -->
+
+##### version 1(backend end date) - 16 oct 2024
+##### version 1(end date) - 17 oct 2024

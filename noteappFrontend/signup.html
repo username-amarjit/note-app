@@ -4,21 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/noteappFrontend/assets/js/common.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <title>Login - Note App</title>
+    <title>Signup - Note App</title>
 </head>
 <body class="font-sans text-text">
     <div class="min-h-screen bg-background flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
             <h2 class="mt-6 text-center text-3xl font-extrabold">
-                Note App (Log in)
+                Note App (Sign up)
             </h2>
         </div>
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                <form class="space-y-6" >
+                <form id="signup-form" class="space-y-6" >
+                    <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                        <strong class="font-bold">Error!</strong>
+                        <span class="block sm:inline" id="error-text"></span>
+                    </div>
                     <div>
                         <label for="username" class="block text-sm font-medium">
                             Username
@@ -47,11 +52,11 @@
                         </div>
                     </div>
                     <div>
-                        <label for="password" class="block text-sm font-medium">
+                        <label for="re-password" class="block text-sm font-medium">
                             Re-Enter Password
                         </label>
                         <div class="mt-1">
-                            <input id="re-password" name="re-password" type="re-password" autocomplete="current-password" required placeholder="Re-Enter Password"
+                            <input id="re-password" name="re-password" type="password" autocomplete="current-password" required placeholder="Re-Enter Password"
                                 class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
                         </div>
                     </div>
@@ -59,7 +64,7 @@
                     <div>        
                         <button type="submit"
                             class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                            Log in
+                            Sign up
                         </button>
                     </div>
                     
@@ -72,7 +77,7 @@
                     <div>        
                         <a href="./index.html"
                             class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-secondary hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary">
-                            Sign up
+                            Log in
                         </a>
                     </div>
                 </form>
@@ -80,6 +85,6 @@
         </div>
     </div>
 
-    <script type="module" src="login.js"></script>
+    <script type="module" src="/noteappFrontend/assets/js/signup.js"></script>
 </body>
 </html>
