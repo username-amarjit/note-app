@@ -1,102 +1,93 @@
-# NoteAppBackend
+# NoteApp
 
-NoteAppBackend is a backend project for a note-taking application built with Django. This project provides a set of APIs for user authentication, note management, and other functionalities related to note-taking.
+NoteApp is a full-stack note-taking application built with Django for the backend, and vanilla HTML, JavaScript, and Tailwind CSS for the frontend. This project provides a user-friendly interface for user authentication, note creation, editing, and management.
 
 ## Table of Contents
 
+- [Features](#features)
 - [Installation](#installation)
-- [API Endpoints](#api-endpoints)
-  - [Authentication](#authentication)
-  - [User Registration](#user-registration)
-  - [Note Management](#note-management)
+- [Usage](#usage)
+
+## Features
+
+- User authentication (signup and login)
+- Create and edit notes
+- View all user notes
+- Markdown support for note content
+- Responsive design using Tailwind CSS
 
 ## Installation
 
-To get started with NoteAppBackend, follow these steps:
+To get started with NoteApp, follow these steps:
 
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/drowsyzen/markdown-Note-taking-App.git
+    git clone https://github.com/your-username/noteapp.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd noteappbackend
+    cd noteapp
     ```
 
-3. Install the required dependencies:
+3. Set up the backend:
 
     ```bash
+    cd backend
+    python -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
     pip install -r requirements.txt
-    ```
-
-4. Apply migrations:
-
-    ```bash
     python manage.py migrate
     ```
 
-5. Start the development server:
+4. Set up the frontend:
 
     ```bash
+    cd ../frontend
+    npm install
+    ```
+
+5. Create a `.env` file in the root directory and add the following environment variables:
+
+    ```
+    DJANGO_SECRET_KEY=your_secret_key_here
+    DEBUG=True
+    ```
+
+6. Start the Django development server:
+
+    ```bash
+    cd ../backend
     python manage.py runserver
     ```
 
-## API Endpoints
+7. In a new terminal, start the frontend development server:
 
-### Authentication
+    ```bash
+    cd ../frontend
+    npm run start
+    ```
 
-- **Token Obtain Pair**
-  - **URL:** `/api/token/`
-  - **Method:** `POST`
-  - **Description:** Obtain a new JWT token pair (access and refresh tokens) by providing valid user credentials.
+The application should now be running. The backend will be available at `http://localhost:8000`, and the frontend will be served at `http://localhost:3000`.
 
-- **Token Refresh**
-  - **URL:** `/api/token/refresh/`
-  - **Method:** `POST`
-  - **Description:** Refresh the access token using a valid refresh token.
+## Usage
 
-### User Registration
+1. Open your web browser and navigate to `http://localhost:3000`.
 
-- **Register User**
-  - **URL:** `/register/`
-  - **Method:** `POST`
-  - **Description:** Register a new user by providing necessary user details.
+2. If you're a new user, click on the "Sign Up" button and create an account.
 
-### Note Management
+3. If you already have an account, click on the "Login" button and enter your credentials.
 
-- **Check Grammar of Note**
-  - **URL:** `/checkgrammer/`
-  - **Method:** `POST`
-  - **Description:** Check the grammar of a provided note.
+4. Once logged in, you'll be taken to your dashboard where you can view your existing notes or create new ones.
 
-- **Render Markdown to HTML**
-  - **URL:** `/rendermdtohtml/`
-  - **Method:** `POST`
-  - **Description:** Render a provided Markdown note to HTML format.
+5. To create a new note, click on the "New Note" button and start writing. You can use Markdown syntax for formatting.
 
-- **Create New Note**
-  - **URL:** `/createnote/`
-  - **Method:** `POST`
-  - **Description:** Create a new note by providing the note details.
+6. To edit an existing note, click on the note title in your dashboard.
 
-- **Delete Current Note**
-  - **URL:** `/deletenote/<int:id>/`
-  - **Method:** `DELETE`
-  - **Description:** Delete an existing note identified by its ID.
+7. Your notes are automatically saved as you type.
 
-- **Update Current Note**
-  - **URL:** `/updatenote/<int:note_id>/`
-  - **Method:** `POST`
-  - **Description:** Update an existing note identified by its note ID.
+8. To log out, click on the "Logout" button in the navigation bar.
 
-- **Get All User Notes**
-  - **URL:** `/getallnotes/<int:user_id>/`
-  - **Method:** `GET`
-  - **Description:** Retrieve all notes belonging to a specific user identified by their user ID.
-
-<!-- finished Version 1 , date - 3 july 2024  -->
-
-##### version 1(end date) - 16 oct 2024
+Enjoy using NoteApp for all your note-taking needs!
